@@ -621,15 +621,32 @@ const products = [
 ];
 
 function InitialPrice() {
+
+    const updatePrice = () => {
+        let item_selected = document.getElementById("input_lista").value;
+        if(!item_selected) {
+            return;
+        }
+        let tasa_cambio = Number(document.getElementById("tasa-cambio").value);
+        
+
+        let precio_unitario_Bs = (products.find(item => item["Nombre"] === item_selected))["Precio Unitario Bs"];
+
+        let precio_unitario_USD = precio_unitario_Bs / tasa_cambio;
+
+        document.getElementById("costo-unitario-Bs").innerHTML = precio_unitario_Bs;
+        document.getElementById("costo-unitario-USD").innerHTML = precio_unitario_USD.toFixed(2);
+    }
+
     return(
         <section className="calculos">
         <h2>Producto Base</h2>
         <div>
             <p>Tasa de cambio (Bs. / USD):<br/>
-                <input type="number" id="tasa-cambio" />
+                <input type="number" id="tasa-cambio" onChange = {updatePrice}/>
             </p>
             <p>Elija el producto</p>
-            <input list="productos" id="input_lista" />
+            <input list="productos" onChange = {updatePrice} id="input_lista" />
             <datalist id="productos">
                 {products.map(item => (
                         <ListItem key={item["Nombre"]} value={item["Nombre"]} text={item["Nombre"]}></ListItem>
