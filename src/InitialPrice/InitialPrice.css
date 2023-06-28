@@ -1,0 +1,27 @@
+.calculos {
+	background-color: var(--white);
+}
+
+.calculos span {
+	display: inline-block;
+	height: 1.3rem;
+	width: 4rem;
+	margin-top: 0.5rem;
+	text-align: end;
+	font-weight: bold;
+	font-size: var(--sm);
+	background-color: var(--kind-pink);
+}
+
+.calculos input {
+	padding: 0.5rem;
+}
+
+.calculos p:last-child {
+	margin-bottom: 1rem;
+}
+
+.parrafo-boton {
+	text-align: center;
+	margin-top: 2rem;
+}

@@ -1,9 +1,9 @@
 //import logo from './logo.svg';
 // import './App.css';
 import React from 'react';
-import { InitialPrice } from './InitialPrice';
+import { InitialPrice } from './InitialPrice/InitialPrice';
 
-function App(props) {
+function App() {
   return (
     <React.Fragment>
       <h1>Calculadora de Presupuestos</h1>

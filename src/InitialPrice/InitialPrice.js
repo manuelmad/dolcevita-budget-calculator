@@ -1,5 +1,6 @@
 import React from "react";
-import { ListItem } from "./ListItem";
+import { ListItem } from "../ListItem/ListItem";
+import './InitialPrice.css';
 
 const products = [
     {
@@ -620,26 +621,57 @@ const products = [
     }
 ];
 
+let item_selected;
+let product;
+let tasa_cambio;
+let precio_unitario_Bs;
+let precio_unitario_USD;
+let precio_total_Bs;
+let precio_total_USD;
+
 function InitialPrice() {
 
     const updatePrice = () => {
-        let item_selected = document.getElementById("input_lista").value;
-        if(!item_selected) {
+        item_selected = document.getElementById("input_lista").value;
+        product = products.find(item => item["Nombre"] === item_selected);
+
+        if(!product) {
             return;
         }
-        let tasa_cambio = Number(document.getElementById("tasa-cambio").value);
-        
 
-        let precio_unitario_Bs = (products.find(item => item["Nombre"] === item_selected))["Precio Unitario Bs"];
+        tasa_cambio = Number(document.getElementById("tasa-cambio").value);
 
-        let precio_unitario_USD = precio_unitario_Bs / tasa_cambio;
+        precio_unitario_Bs = product["Precio Unitario Bs"];
+        precio_unitario_USD = precio_unitario_Bs / tasa_cambio;
 
-        document.getElementById("costo-unitario-Bs").innerHTML = precio_unitario_Bs;
+        document.getElementById("costo-unitario-Bs").innerHTML = precio_unitario_Bs.toFixed(2);
         document.getElementById("costo-unitario-USD").innerHTML = precio_unitario_USD.toFixed(2);
+    }
+
+    const calculateInitialPrice = ()=> {
+        
+        let cantidad = document.getElementById("cantidad").value;
+
+        let porcentaje_ganancia = document.getElementById("porcentaje-ganancia").value;
+
+        if(product["Adicional"] === "true") {
+            precio_total_Bs = ((precio_unitario_Bs * cantidad) * ((porcentaje_ganancia/100)+1))+tasa_cambio;
+
+            precio_total_USD = ((precio_unitario_USD * cantidad) * ((porcentaje_ganancia/100)+1))+1;
+        } else {
+            precio_total_Bs = ((precio_unitario_Bs * cantidad) * ((porcentaje_ganancia/100)+1));
+
+            precio_total_USD = ((precio_unitario_USD * cantidad) * ((porcentaje_ganancia/100)+1));
+        }
+
+        document.getElementById("costo-total-Bs").innerHTML = Number(precio_total_Bs).toFixed(2);
+
+        document.getElementById("costo-total-USD").innerHTML = Number(precio_total_USD).toFixed(2);
     }
 
     return(
         <section className="calculos">
+       
         <h2>Producto Base</h2>
         <div>
             <p>Tasa de cambio (Bs. / USD):<br/>
@@ -664,7 +696,7 @@ function InitialPrice() {
                 <input type="number" id="porcentaje-ganancia" />
             </p>
             <p className="parrafo-boton">
-                <button id="calcular-precio-total">Calcular Precio Inicial</button>
+                <button id="calcular-precio-total" onClick={calculateInitialPrice}>Calcular Precio Inicial</button>
             </p>
             <p>Costo Total:<br />
                 <span id="costo-total-Bs">0.00</span> Bs.<br />
