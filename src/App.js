@@ -2,13 +2,14 @@
 // import './App.css';
 import React from 'react';
 import { InitialPrice } from './InitialPrice/InitialPrice';
+import { SummaryChart } from './SummaryChart/SummaryChart';
 
 function App() {
   return (
     <React.Fragment>
       <h1>Calculadora de Presupuestos</h1>
       <InitialPrice />
-      {/*<SummaryChart />*/}
+      <SummaryChart />
       {/*<AdditionalPrice />*/}
       {/*<Budget />*/}
       {/*<ClearAll />*/}
