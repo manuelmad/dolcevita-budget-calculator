@@ -1,12 +1,13 @@
 import React from "react";
 import './SummaryChart.css';
+import { eliminarFila } from "./removeRow";
 
 function SummaryChart() {
     return(
         <section>
 			<h2>Tabla Resumen</h2>
 			<p className="parrafo-boton-eliminar-fila">
-				<button id="eliminar_fila">Eliminar fila</button>
+				<button id="eliminar_fila" onClick={eliminarFila}>Eliminar fila</button>
 			</p>
 			<table id="tabla_resumen">
 				<thead id="cabecera_tabla_resumen">

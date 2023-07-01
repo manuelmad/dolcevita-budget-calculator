@@ -1,6 +1,9 @@
 import React from "react";
 import { ListItem } from "../ListItem/ListItem";
 import './InitialPrice.css';
+import { agregarFila } from "../SummaryChart/addRow";
+import { sumarTotales } from "../SummaryChart/addRow";
+
 
 const products = [
     {
@@ -667,6 +670,9 @@ function InitialPrice() {
         document.getElementById("costo-total-Bs").innerHTML = Number(precio_total_Bs).toFixed(2);
 
         document.getElementById("costo-total-USD").innerHTML = Number(precio_total_USD).toFixed(2);
+
+        agregarFila();
+        sumarTotales();
     }
 
     return(
