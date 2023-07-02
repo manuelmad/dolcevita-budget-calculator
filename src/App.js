@@ -5,26 +5,38 @@ import { InitialPrice } from './InitialPrice/InitialPrice';
 import { SummaryChart } from './SummaryChart/SummaryChart';
 
 function App() {
-  const [item_selected, setitem_selected] = React.useState('');
-  const [product, setproduct] = React.useState('');
+  const [itemSelected, setItemSelected] = React.useState('');
+  const [product, setProduct] = React.useState('');
   const [tasaCambio, setTasaCambio] = React.useState(0);
-  const [precio_unitario_Bs, setprecio_unitario_Bs] = React.useState(0);
-  const [precio_unitario_USD, setprecio_unitario_USD] = React.useState(0);
+  const [precioUnitarioBs, setPrecioUnitarioBs] = React.useState(0);
+  const [precioUnitarioUSD, setPrecioUnitarioUSD] = React.useState(0);
+  const [cantidad, setCantidad] = React.useState(0);
+  const [porcentajeGanancia, setPorcentajeGanancia] = React.useState(0);
+  const [precioTotalBs, setPrecioTotalBs] = React.useState(0);
+  const [precioTotalUSD, setPrecioTotalUSD] = React.useState(0);
 
   return (
     <React.Fragment>
       <h1>Calculadora de Presupuestos</h1>
       <InitialPrice 
-        item_selected={item_selected}
-        setitem_selected={setitem_selected}
+        itemSelected={itemSelected}
+        setItemSelected={setItemSelected}
         product={product}
-        setproduct={setproduct}
+        setProduct={setProduct}
         tasaCambio={tasaCambio}
         setTasaCambio={setTasaCambio}
-        precio_unitario_Bs={precio_unitario_Bs}
-        setprecio_unitario_Bs={setprecio_unitario_Bs}
-        precio_unitario_USD={precio_unitario_USD}
-        setprecio_unitario_USD={setprecio_unitario_USD} />
+        precioUnitarioBs={precioUnitarioBs}
+        setPrecioUnitarioBs={setPrecioUnitarioBs}
+        precioUnitarioUSD={precioUnitarioUSD}
+        setPrecioUnitarioUSD={setPrecioUnitarioUSD}
+        cantidad={cantidad}
+        setCantidad={setCantidad}
+        porcentajeGanancia={porcentajeGanancia}
+        setPorcentajeGanancia={setPorcentajeGanancia}
+        precioTotalBs={precioTotalBs}
+        setPrecioTotalBs={setPrecioTotalBs}
+        precioTotalUSD={precioTotalUSD}
+        setPrecioTotalUSD={setPrecioTotalUSD} />
       <SummaryChart />
       {/*<AdditionalPrice />*/}
       {/*<Budget />*/}
