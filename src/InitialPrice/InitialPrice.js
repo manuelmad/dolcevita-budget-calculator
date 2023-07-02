@@ -626,7 +626,7 @@ const products = [
 // let tasa_cambio;
 // let precio_unitario_Bs;
 // let precio_unitario_USD;
-let newTasaCambio;
+//let newTasaCambio;
 let precio_total_Bs;
 let precio_total_USD;
 
@@ -647,6 +647,8 @@ function InitialPrice({
         
         console.log('tasaCambio',tasaCambio);
         console.log('event',event.target.value);
+        let tc = document.getElementById("tasa-cambio").value;
+        console.log(tc);
 
         let is = item_selected;
         console.log('is',is);
@@ -658,40 +660,44 @@ function InitialPrice({
         }
         setproduct(p);
 
-        let bs = product["Precio Unitario Bs"];
+        let bs = p["Precio Unitario Bs"];
         console.log('bs',bs);
         setprecio_unitario_Bs(bs);
-        let usd = precio_unitario_Bs / tasaCambio;
+        let usd = bs / tc;
         console.log('usd',usd);
-        setprecio_unitario_USD(usd)
+        setprecio_unitario_USD(usd);
 
-        document.getElementById("costo-unitario-Bs").innerHTML = precio_unitario_Bs.toFixed(2);
-        document.getElementById("costo-unitario-USD").innerHTML = precio_unitario_USD.toFixed(2);
+        document.getElementById("costo-unitario-Bs").innerHTML = bs.toFixed(2);
+        document.getElementById("costo-unitario-USD").innerHTML = usd.toFixed(2);
     }
 
 
     const updatePrice2 = (event) => {
         console.log('event', event.target.value);
         setitem_selected(event.target.value);
+
+        let is = document.getElementById("input_lista").value;
+        console.log(is);
+
         console.log('item_selected', item_selected);
-        let p = products.find(item => item["Nombre"] === item_selected);
+        let p = products.find(item => item["Nombre"] === is);
+        console.log(p);
         
         if(!p) {
             return;
         }
 
-        let tc = tasaCambio;
-        setTasaCambio(tc);
+        let tc = document.getElementById("tasa-cambio").value;
 
         setproduct(p);
 
-        let bs = product["Precio Unitario Bs"];
+        let bs = p["Precio Unitario Bs"];
         setprecio_unitario_Bs(bs);
-        let usd = precio_unitario_Bs / tasaCambio;
-        setprecio_unitario_USD(usd)
+        let usd = bs / tc;
+        setprecio_unitario_USD(usd);
 
-        document.getElementById("costo-unitario-Bs").innerHTML = precio_unitario_Bs.toFixed(2);
-        document.getElementById("costo-unitario-USD").innerHTML = precio_unitario_USD.toFixed(2);
+        document.getElementById("costo-unitario-Bs").innerHTML = bs.toFixed(2);
+        document.getElementById("costo-unitario-USD").innerHTML = usd.toFixed(2);
     }
 
     const calculateInitialPrice = ()=> {
@@ -725,7 +731,8 @@ function InitialPrice({
             </p>
             <p>{tasaCambio}</p>
             <p>Elija el producto</p>
-            <input value={product} list="productos" onChange={updatePrice2} id="input_lista" />
+            <p>{product["Nombre"]}</p>
+            <input list="productos" onChange={updatePrice2} id="input_lista" />
             <datalist id="productos">
                 {products.map(item => (
                         <ListItem key={item["Nombre"]} value={item["Nombre"]} text={item["Nombre"]}></ListItem>
