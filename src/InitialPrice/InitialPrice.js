@@ -644,12 +644,12 @@ function InitialPrice({
     // Función onChange para actualizar la tasaCambio
     const updateRate = (event) => {
         setTasaCambio(event.target.value);
-    }
+    };
 
     // Función onChange para actualizar el itemSelected
     const updateItemSelected = (event) => {
         setItemSelected(event.target.value);
-    }
+    };
 
     // Función onChange para calcular y actualizar precioUnitarioBs y precioUnitarioUSD. Así como también el product. También renderiza ambos precios.
     const calculateUnitCost = () => {
@@ -665,25 +665,22 @@ function InitialPrice({
         setPrecioUnitarioBs(bs);
         let usd = bs / tasaCambio;
         setPrecioUnitarioUSD(usd);
-
-        document.getElementById("costo-unitario-Bs").innerHTML = bs.toFixed(2);
-        document.getElementById("costo-unitario-USD").innerHTML = usd.toFixed(2);
-    }
+    };
 
     // Efecto para que ejecute la función anterior al final de la renderización de la app
     React.useEffect(()=> {
         calculateUnitCost();
-    } );
+    });
 
     // Función onChange para actualizar la cantidad
     const updateCantidad= (event)=> {
         setCantidad(event.target.value);
-    }
+    };
 
     // Función onChange para actualizar el porcntajeGanancia
     const updatePercentage = (event)=> {
         setPorcentajeGanancia(event.target.value);
-    }
+    };
 
     // Función onClick para que calcule y actualice precioTotalBs y precioTotalUSD
     const calculateInitialPrice = ()=> {
@@ -702,51 +699,43 @@ function InitialPrice({
 
         setPrecioTotalBs(precio_total_Bs);
         setPrecioTotalUSD(precio_total_USD);
-    }
-
-     // Efecto para que renderice los valores calculados en la función anterior, al final de la renderización de la app
-    React.useEffect(()=> {
-        document.getElementById("costo-total-Bs").innerHTML = Number(precioTotalBs).toFixed(2);
-
-        document.getElementById("costo-total-USD").innerHTML = Number(precioTotalUSD).toFixed(2);
-    } );
+    };
 
     return(
         <section className="calculos">
-       
-        <h2>Producto Base</h2>
-        <div>
-            <p>Tasa de cambio (Bs. / USD):<br/>
-                <input type="number" id="tasa-cambio" onChange={updateRate}/>
-            </p>
-            <p>Elija el producto</p>
-            <input list="productos" onChange={updateItemSelected} id="input_lista" />
-            <datalist id="productos">
-                {products.map(item => (
-                        <ListItem key={item["Nombre"]} value={item["Nombre"]} text={item["Nombre"]}></ListItem>
-                    ))
-                }
-            </datalist>
-            <p>Costo Unitario:<br />
-                <span id="costo-unitario-Bs">0.00</span> Bs. / Unidad.<br />
-                <span id="costo-unitario-USD">0.00</span> USD / Unidad.
-            </p>
-            <p>Cantidad:<br />
-                <input onChange={updateCantidad} type="number" id="cantidad" />
-            </p>
-            <p>Porcentaje de Ganancia (%):<br />
-                <input onChange={updatePercentage} type="number" id="porcentaje-ganancia" />
-            </p>
-            <p className="parrafo-boton">
-                <button id="calcular-precio-total" onClick={calculateInitialPrice}>Calcular Precio Inicial</button>
-            </p>
-            <p>Costo Total:<br />
-                <span id="costo-total-Bs">0.00</span> Bs.<br />
-                <span id="costo-total-USD">0.00</span> USD.
-            </p>
-        </div>
-    </section>
+            <h2>Producto Base</h2>
+            <div>
+                <p>Tasa de cambio (Bs. / USD):<br/>
+                    <input type="number" id="tasa-cambio" onChange={updateRate}/>
+                </p>
+                <p>Elija el producto</p>
+                <input list="productos" onChange={updateItemSelected} id="input_lista" />
+                <datalist id="productos">
+                    {products.map(item => (
+                            <ListItem key={item["Nombre"]} value={item["Nombre"]} text={item["Nombre"]}></ListItem>
+                        ))
+                    }
+                </datalist>
+                <p>Costo Unitario:<br />
+                    <span id="costo-unitario-Bs">{precioUnitarioBs.toFixed(2)}</span> Bs. / Unidad.<br />
+                    <span id="costo-unitario-USD">{precioUnitarioUSD.toFixed(2)}</span> USD / Unidad.
+                </p>
+                <p>Cantidad:<br />
+                    <input onChange={updateCantidad} type="number" id="cantidad" />
+                </p>
+                <p>Porcentaje de Ganancia (%):<br />
+                    <input onChange={updatePercentage} type="number" id="porcentaje-ganancia" />
+                </p>
+                <p className="parrafo-boton">
+                    <button id="calcular-precio-total" onClick={calculateInitialPrice}>Calcular Precio Inicial</button>
+                </p>
+                <p>Costo Total:<br />
+                    <span id="costo-total-Bs">{precioTotalBs.toFixed(2)}</span> Bs.<br />
+                    <span id="costo-total-USD">{precioTotalUSD.toFixed(2)}</span> USD.
+                </p>
+            </div>
+        </section>
     );
 }
 
-export { InitialPrice, products };
+export { InitialPrice };
