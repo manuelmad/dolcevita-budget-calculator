@@ -624,93 +624,121 @@ const products = [
     }
 ];
 
-let item_selected;
-let product;
-let tasa_cambio;
-let precio_unitario_Bs;
-let precio_unitario_USD;
-let precio_total_Bs;
-let precio_total_USD;
+function InitialPrice({
+    itemSelected,
+    setItemSelected,
+    product,
+    setProduct,
+    tasaCambio,
+    setTasaCambio,
+    precioUnitarioBs,
+    setPrecioUnitarioBs,
+    precioUnitarioUSD,
+    setPrecioUnitarioUSD,
+    cantidad,
+    setCantidad,
+    porcentajeGanancia,
+    setPorcentajeGanancia,
+    precioTotalBs,
+    setPrecioTotalBs,
+    precioTotalUSD,
+    setPrecioTotalUSD}) {
+    
+    // Función onChange para actualizar la tasaCambio
+    const updateRate = (event) => {
+        setTasaCambio(event.target.value);
+    };
 
-function InitialPrice() {
+    // Función onChange para actualizar el itemSelected
+    const updateItemSelected = (event) => {
+        setItemSelected(event.target.value);
+    };
 
-    const updatePrice = () => {
-        item_selected = document.getElementById("input_lista").value;
-        product = products.find(item => item["Nombre"] === item_selected);
-
-        if(!product) {
+    // Función onChange para calcular y actualizar precioUnitarioBs y precioUnitarioUSD. Así como también el product. También renderiza ambos precios.
+    const calculateUnitCost = () => {
+        let p = products.find(item => item["Nombre"] === itemSelected);
+        
+        if(!p) {
             return;
         }
 
-        tasa_cambio = Number(document.getElementById("tasa-cambio").value);
+        setProduct(p);
 
-        precio_unitario_Bs = product["Precio Unitario Bs"];
-        precio_unitario_USD = precio_unitario_Bs / tasa_cambio;
+        let bs = p["Precio Unitario Bs"];
+        setPrecioUnitarioBs(bs);
+        let usd = bs / tasaCambio;
+        setPrecioUnitarioUSD(usd);
+    };
 
-        document.getElementById("costo-unitario-Bs").innerHTML = precio_unitario_Bs.toFixed(2);
-        document.getElementById("costo-unitario-USD").innerHTML = precio_unitario_USD.toFixed(2);
-    }
+    // Efecto para que ejecute la función anterior al final de la renderización de la app
+    React.useEffect(()=> {
+        calculateUnitCost();
+    });
 
+    // Función onChange para actualizar la cantidad
+    const updateCantidad= (event)=> {
+        setCantidad(event.target.value);
+    };
+
+    // Función onChange para actualizar el porcntajeGanancia
+    const updatePercentage = (event)=> {
+        setPorcentajeGanancia(event.target.value);
+    };
+
+    // Función onClick para que calcule y actualice precioTotalBs y precioTotalUSD
     const calculateInitialPrice = ()=> {
+        let precio_total_Bs;
+        let precio_total_USD;
         
-        let cantidad = document.getElementById("cantidad").value;
-
-        let porcentaje_ganancia = document.getElementById("porcentaje-ganancia").value;
-
         if(product["Adicional"] === "true") {
-            precio_total_Bs = ((precio_unitario_Bs * cantidad) * ((porcentaje_ganancia/100)+1))+tasa_cambio;
+            precio_total_Bs = ((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1))+tasaCambio;
 
-            precio_total_USD = ((precio_unitario_USD * cantidad) * ((porcentaje_ganancia/100)+1))+1;
+            precio_total_USD = ((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1))+1;
         } else {
-            precio_total_Bs = ((precio_unitario_Bs * cantidad) * ((porcentaje_ganancia/100)+1));
+            precio_total_Bs = ((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1));
 
-            precio_total_USD = ((precio_unitario_USD * cantidad) * ((porcentaje_ganancia/100)+1));
+            precio_total_USD = ((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1));
         }
 
-        document.getElementById("costo-total-Bs").innerHTML = Number(precio_total_Bs).toFixed(2);
-
-        document.getElementById("costo-total-USD").innerHTML = Number(precio_total_USD).toFixed(2);
-
-        agregarFila();
-        sumarTotales();
-    }
+        setPrecioTotalBs(precio_total_Bs);
+        setPrecioTotalUSD(precio_total_USD);
+    };
 
     return(
         <section className="calculos">
-       
-        <h2>Producto Base</h2>
-        <div>
-            <p>Tasa de cambio (Bs. / USD):<br/>
-                <input type="number" id="tasa-cambio" onChange = {updatePrice}/>
-            </p>
-            <p>Elija el producto</p>
-            <input list="productos" onChange = {updatePrice} id="input_lista" />
-            <datalist id="productos">
-                {products.map(item => (
-                        <ListItem key={item["Nombre"]} value={item["Nombre"]} text={item["Nombre"]}></ListItem>
-                    ))
-                }
-            </datalist>
-            <p>Costo Unitario:<br />
-                <span id="costo-unitario-Bs">0.00</span> Bs. / Unidad.<br />
-                <span id="costo-unitario-USD">0.00</span> USD / Unidad.
-            </p>
-            <p>Cantidad:<br />
-                <input type="number" id="cantidad" />
-            </p>
-            <p>Porcentaje de Ganancia (%):<br />
-                <input type="number" id="porcentaje-ganancia" />
-            </p>
-            <p className="parrafo-boton">
-                <button id="calcular-precio-total" onClick={calculateInitialPrice}>Calcular Precio Inicial</button>
-            </p>
-            <p>Costo Total:<br />
-                <span id="costo-total-Bs">0.00</span> Bs.<br />
-                <span id="costo-total-USD">0.00</span> USD.
-            </p>
-        </div>
-    </section>
+            <h2>Producto Base</h2>
+            <div>
+                <p>Tasa de cambio (Bs. / USD):<br/>
+                    <input type="number" id="tasa-cambio" onChange={updateRate}/>
+                </p>
+                <p>Elija el producto</p>
+                <input list="productos" onChange={updateItemSelected} id="input_lista" />
+                <datalist id="productos">
+                    {products.map(item => (
+                            <ListItem key={item["Nombre"]} value={item["Nombre"]} text={item["Nombre"]}></ListItem>
+                        ))
+                    }
+                </datalist>
+                <p>Costo Unitario:<br />
+                    <span id="costo-unitario-Bs">{precioUnitarioBs.toFixed(2)}</span> Bs. / Unidad.<br />
+                    <span id="costo-unitario-USD">{precioUnitarioUSD.toFixed(2)}</span> USD / Unidad.
+                </p>
+                <p>Cantidad:<br />
+                    <input onChange={updateCantidad} type="number" id="cantidad" />
+                </p>
+                <p>Porcentaje de Ganancia (%):<br />
+                    <input onChange={updatePercentage} type="number" id="porcentaje-ganancia" />
+                </p>
+                <p className="parrafo-boton">
+                    <button id="calcular-precio-total" onClick={calculateInitialPrice}>Calcular Precio Inicial</button>
+                </p>
+                <p>Costo Total:<br />
+                    <span id="costo-total-Bs">{precioTotalBs.toFixed(2)}</span> Bs.<br />
+                    <span id="costo-total-USD">{precioTotalUSD.toFixed(2)}</span> USD.
+                </p>
+            </div>
+        </section>
     );
 }
 
-export { InitialPrice, products };
+export { InitialPrice };
