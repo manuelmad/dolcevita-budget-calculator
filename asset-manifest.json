@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dolcevita-budget-calculator/static/css/main.88af7d13.css",
-    "main.js": "/dolcevita-budget-calculator/static/js/main.b3087851.js",
+    "main.js": "/dolcevita-budget-calculator/static/js/main.fb58ee92.js",
     "index.html": "/dolcevita-budget-calculator/index.html",
     "main.88af7d13.css.map": "/dolcevita-budget-calculator/static/css/main.88af7d13.css.map",
-    "main.b3087851.js.map": "/dolcevita-budget-calculator/static/js/main.b3087851.js.map"
+    "main.fb58ee92.js.map": "/dolcevita-budget-calculator/static/js/main.fb58ee92.js.map"
   },
   "entrypoints": [
     "static/css/main.88af7d13.css",
-    "static/js/main.b3087851.js"
+    "static/js/main.fb58ee92.js"
   ]
 }
