@@ -14,6 +14,7 @@ function App() {
   const [porcentajeGanancia, setPorcentajeGanancia] = React.useState(0);
   const [precioTotalBs, setPrecioTotalBs] = React.useState(0);
   const [precioTotalUSD, setPrecioTotalUSD] = React.useState(0);
+  const [cantidadProductos, setcantidadProductos] = React.useState(0);
 
   return (
     <React.Fragment>
@@ -36,8 +37,17 @@ function App() {
         precioTotalBs={precioTotalBs}
         setPrecioTotalBs={setPrecioTotalBs}
         precioTotalUSD={precioTotalUSD}
-        setPrecioTotalUSD={setPrecioTotalUSD} />
-      <SummaryChart />
+        setPrecioTotalUSD={setPrecioTotalUSD}
+        cantidadProductos={cantidadProductos}
+        setcantidadProductos={setcantidadProductos} />
+      <SummaryChart
+        itemSelected={itemSelected}
+        cantidad={cantidad}
+        precioUnitarioBs={precioUnitarioBs}
+        precioUnitarioUSD={precioUnitarioUSD}
+        precioTotalBs={precioTotalBs}
+        precioTotalUSD={precioTotalUSD}
+        cantidadProductos={cantidadProductos}  />
       {/*<AdditionalPrice />*/}
       {/*<Budget />*/}
       {/*<ClearAll />*/}

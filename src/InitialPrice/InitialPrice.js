@@ -1,8 +1,8 @@
 import React from "react";
 import { ListItem } from "../ListItem/ListItem";
 import './InitialPrice.css';
-import { agregarFila } from "../SummaryChart/addRow";
 import { sumarTotales } from "../SummaryChart/addRow";
+// import { cantidadProductos } from "../SummaryChart/SummaryChart";
 
 
 const products = [
@@ -642,7 +642,9 @@ function InitialPrice({
     precioTotalBs,
     setPrecioTotalBs,
     precioTotalUSD,
-    setPrecioTotalUSD}) {
+    setPrecioTotalUSD,
+    cantidadProductos,
+    setcantidadProductos}) {
     
     // Función onChange para actualizar la tasaCambio
     const updateRate = (event) => {
@@ -680,7 +682,7 @@ function InitialPrice({
         setCantidad(event.target.value);
     };
 
-    // Función onChange para actualizar el porcntajeGanancia
+    // Función onChange para actualizar el porcentajeGanancia
     const updatePercentage = (event)=> {
         setPorcentajeGanancia(event.target.value);
     };
@@ -702,6 +704,11 @@ function InitialPrice({
 
         setPrecioTotalBs(precio_total_Bs);
         setPrecioTotalUSD(precio_total_USD);
+
+        // agregarFila();
+        let cP = cantidadProductos+1;
+        setcantidadProductos(cP);
+        sumarTotales();
     };
 
     return(
