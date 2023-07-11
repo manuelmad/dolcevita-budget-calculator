@@ -1,8 +1,7 @@
 import React from "react";
 import './SummaryChart.css';
-import { eliminarFila } from "./removeRow";
+// import { eliminarFila } from "./removeRow";
 
-// let cantidadProductos = 0;
 
 function SummaryChart({
 	itemSelected,
@@ -11,7 +10,12 @@ function SummaryChart({
 	precioUnitarioUSD,
 	precioTotalBs,
 	precioTotalUSD,
-	cantidadProductos
+	cantidadProductos,
+	setCantidadProductos,
+	sumaInicialBs,
+	setSumaInicialBs,
+	sumaInicialUSD,
+	setSumaInicialUSD
 }) {
 	const addRow = ()=> {
 		// Condicional para que no agregue filas al abrir la aplicación
@@ -42,22 +46,47 @@ function SummaryChart({
 		nueva_columna.innerHTML = itemSelected;
 		// let cantidad = document.getElementById("cantidad").value;
 		nueva_columna2.innerHTML = cantidad;
-		nueva_columna3.innerHTML =  precioUnitarioBs.toFixed(2);
-		nueva_columna4.innerHTML =  precioUnitarioUSD.toFixed(2);
-		nueva_columna5.innerHTML = precioTotalBs.toFixed(2);
-		nueva_columna6.innerHTML = precioTotalUSD.toFixed(2);
-	}
+		nueva_columna3.innerHTML = precioUnitarioBs.toFixed(2);
+		nueva_columna4.innerHTML = precioUnitarioUSD.toFixed(2);
+		nueva_columna5.innerHTML = precioTotalBs;
+		nueva_columna6.innerHTML = precioTotalUSD;
+	};
 
 	// Función para que renderice una nueva fila cada vez que el valor de cantidadProductos cambie
 	React.useEffect(()=> {
 		addRow();
 	},[cantidadProductos]);
 
+	const removeRow = () => {
+		let filas_tbody = document.getElementById("cuerpo_tabla_resumen");
+		let a = filas_tbody.getElementsByTagName("tr").length;
+		console.log(a);
+
+		// Condicional para que no elimine filas cuando solo quede la del total
+		if(a <= 1) {
+			return;
+		}
+
+		// Restar el último precio al total
+		// Actualizar el total de todos los productos en Bs
+		let newInicialBs = sumaInicialBs-precioTotalBs;
+		setSumaInicialBs(newInicialBs);
+
+		// Actualizar el total de todos los productos en BUSD
+		let newInicialUSD = sumaInicialUSD-precioTotalUSD;
+		setSumaInicialUSD(newInicialUSD);
+
+		// Eliminar penúltima fila
+		let penultima_fila = filas_tbody.children[a-2];
+		console.log(penultima_fila);
+		filas_tbody.removeChild(penultima_fila);
+	};
+
     return(
         <section>
 			<h2>Tabla Resumen</h2>
 			<p className="parrafo-boton-eliminar-fila">
-				<button id="eliminar_fila" onClick={eliminarFila}>Eliminar fila</button>
+				<button id="eliminar_fila" onClick={removeRow}>Eliminar fila</button>
 			</p>
 			<table id="tabla_resumen">
 				<thead id="cabecera_tabla_resumen">
@@ -79,8 +108,8 @@ function SummaryChart({
 				<tbody id="cuerpo_tabla_resumen">
 					<tr className="fila-total">
 						<td colSpan="4">Total</td>
-						<td id="celda_suma_Bs">0.00</td>
-						<td id="celda_suma_usd">0.00</td>
+						<td id="celda_suma_Bs">{sumaInicialBs.toFixed(2)}</td>
+						<td id="celda_suma_usd">{sumaInicialUSD.toFixed(2)}</td>
 					</tr>
 				</tbody>
 			</table>

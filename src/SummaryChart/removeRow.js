@@ -1,19 +1,15 @@
-import { sumarTotales, celda_usd_total, celda_Bs_total, cuerpo_tabla, filas_tbody  } from "./addRow";
+// import { sumarTotales, celda_usd_total, celda_Bs_total, cuerpo_tabla, filas_tbody  } from "./addRow";
 
 // Accedo al botón de eliminar fila y le asigno el evento de activar la función
-// const eliminar_fila = document.getElementById("eliminar_fila");
-// eliminar_fila.addEventListener("click", eliminarFila);
-let penultima_fila;
-let ultima_fila_presupuesto;
-let filas_tbody_prespuesto;
-// let cuerpo_tabla;
-// let filas_tbody;
+// let penultima_fila;
+// let ultima_fila_presupuesto;
+// let filas_tbody_prespuesto;
+
 
 function eliminarFila()
 {
 	filas_tbody = document.getElementById("cuerpo_tabla_resumen");
 	let a = filas_tbody.getElementsByTagName("tr").length;
-	console.log("Entrada " + a);
 
 	// Condicional para que el botón eliminar no funcione cuando solo queda la fila del total
 	if(a > 1) {
@@ -40,4 +36,4 @@ function eliminarFila()
 	}
 }
 
-export { eliminarFila };
+// export { eliminarFila };

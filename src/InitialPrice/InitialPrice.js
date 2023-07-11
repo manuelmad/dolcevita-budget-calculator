@@ -1,8 +1,7 @@
 import React from "react";
 import { ListItem } from "../ListItem/ListItem";
 import './InitialPrice.css';
-import { sumarTotales } from "../SummaryChart/addRow";
-// import { cantidadProductos } from "../SummaryChart/SummaryChart";
+
 
 
 const products = [
@@ -644,7 +643,11 @@ function InitialPrice({
     precioTotalUSD,
     setPrecioTotalUSD,
     cantidadProductos,
-    setcantidadProductos}) {
+    setCantidadProductos,
+	sumaInicialBs,
+	setSumaInicialBs,
+	sumaInicialUSD,
+	setSumaInicialUSD}) {
     
     // Función onChange para actualizar la tasaCambio
     const updateRate = (event) => {
@@ -693,22 +696,33 @@ function InitialPrice({
         let precio_total_USD;
         
         if(product["Adicional"] === "true") {
-            precio_total_Bs = ((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1))+tasaCambio;
+            precio_total_Bs = (((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1))+tasaCambio).toFixed(2);
 
-            precio_total_USD = ((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1))+1;
+            precio_total_USD = (((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1))+1).toFixed(2);
         } else {
-            precio_total_Bs = ((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1));
+            precio_total_Bs = ((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1)).toFixed(2);
 
-            precio_total_USD = ((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1));
+            precio_total_USD = ((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1)).toFixed(2);
         }
 
         setPrecioTotalBs(precio_total_Bs);
+        console.log(precio_total_Bs);
         setPrecioTotalUSD(precio_total_USD);
+        console.log(precio_total_USD);
 
-        // agregarFila();
+        // Modificar la variable de estado para contar productos (sumar)
         let cP = cantidadProductos+1;
-        setcantidadProductos(cP);
-        sumarTotales();
+        setCantidadProductos(cP);
+
+        // Actualizar el total de todos los productos en Bs
+        let newInicialBs = sumaInicialBs+Number(precio_total_Bs);
+        setSumaInicialBs(newInicialBs);
+        console.log(newInicialBs);
+
+        // Actualizar el total de todos los productos en BUSD
+        let newInicialUSD = sumaInicialUSD+Number(precio_total_USD);
+        setSumaInicialUSD(newInicialUSD);
+        console.log(newInicialUSD);
     };
 
     return(
@@ -740,8 +754,8 @@ function InitialPrice({
                     <button id="calcular-precio-total" onClick={calculateInitialPrice}>Calcular Precio Inicial</button>
                 </p>
                 <p>Costo Total:<br />
-                    <span id="costo-total-Bs">{precioTotalBs.toFixed(2)}</span> Bs.<br />
-                    <span id="costo-total-USD">{precioTotalUSD.toFixed(2)}</span> USD.
+                    <span id="costo-total-Bs">{precioTotalBs}</span> Bs.<br />
+                    <span id="costo-total-USD">{precioTotalUSD}</span> USD.
                 </p>
             </div>
         </section>
