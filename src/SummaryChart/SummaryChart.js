@@ -1,6 +1,7 @@
 import React from "react";
 import './SummaryChart.css';
-// import { eliminarFila } from "./removeRow";
+import { productsSelectedBs } from "../InitialPrice/InitialPrice";
+import { productsSelectedUSD } from "../InitialPrice/InitialPrice";
 
 
 function SummaryChart({
@@ -11,7 +12,6 @@ function SummaryChart({
 	precioTotalBs,
 	precioTotalUSD,
 	cantidadProductos,
-	setCantidadProductos,
 	sumaInicialBs,
 	setSumaInicialBs,
 	sumaInicialUSD,
@@ -42,9 +42,7 @@ function SummaryChart({
 		let nueva_columna6 = nueva_fila.insertCell(5);
 
 		// Muestro valores en cada celda
-		// let texto = document.getElementById("input_lista").value;
 		nueva_columna.innerHTML = itemSelected;
-		// let cantidad = document.getElementById("cantidad").value;
 		nueva_columna2.innerHTML = cantidad;
 		nueva_columna3.innerHTML = precioUnitarioBs.toFixed(2);
 		nueva_columna4.innerHTML = precioUnitarioUSD.toFixed(2);
@@ -60,21 +58,26 @@ function SummaryChart({
 	const removeRow = () => {
 		let filas_tbody = document.getElementById("cuerpo_tabla_resumen");
 		let a = filas_tbody.getElementsByTagName("tr").length;
-		console.log(a);
+		// console.log(a);
 
 		// Condicional para que no elimine filas cuando solo quede la del total
 		if(a <= 1) {
 			return;
 		}
 
-		// Restar el último precio al total
 		// Actualizar el total de todos los productos en Bs
-		let newInicialBs = sumaInicialBs-precioTotalBs;
-		setSumaInicialBs(newInicialBs);
+		productsSelectedBs.pop(); // Elimino el último precio del array Bs
+		let newInicialBs = Number(productsSelectedBs.reduce((sum, elem)=> sum+Number(elem), 0));
+        setSumaInicialBs(newInicialBs);
 
-		// Actualizar el total de todos los productos en BUSD
-		let newInicialUSD = sumaInicialUSD-precioTotalUSD;
+
+		// Actualizar el total de todos los productos en USD
+		productsSelectedUSD.pop(); // Elimino el último precio del array USD
+		let newInicialUSD = Number(productsSelectedUSD.reduce((sum, elem)=> sum+Number(elem), 0));
 		setSumaInicialUSD(newInicialUSD);
+
+		// console.log(productsSelectedBs);
+        // console.log(productsSelectedUSD);
 
 		// Eliminar penúltima fila
 		let penultima_fila = filas_tbody.children[a-2];

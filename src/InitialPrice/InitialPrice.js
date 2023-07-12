@@ -623,6 +623,9 @@ const products = [
     }
 ];
 
+const productsSelectedBs = [0];
+const productsSelectedUSD = [0];
+
 function InitialPrice({
     itemSelected,
     setItemSelected,
@@ -644,9 +647,7 @@ function InitialPrice({
     setPrecioTotalUSD,
     cantidadProductos,
     setCantidadProductos,
-	sumaInicialBs,
 	setSumaInicialBs,
-	sumaInicialUSD,
 	setSumaInicialUSD}) {
     
     // Función onChange para actualizar la tasaCambio
@@ -696,7 +697,7 @@ function InitialPrice({
         let precio_total_USD;
         
         if(product["Adicional"] === "true") {
-            precio_total_Bs = (((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1))+tasaCambio).toFixed(2);
+            precio_total_Bs = (((precioUnitarioBs * cantidad) * ((porcentajeGanancia/100)+1))+Number(tasaCambio)).toFixed(2);
 
             precio_total_USD = (((precioUnitarioUSD * cantidad) * ((porcentajeGanancia/100)+1))+1).toFixed(2);
         } else {
@@ -706,21 +707,27 @@ function InitialPrice({
         }
 
         setPrecioTotalBs(precio_total_Bs);
-        console.log(precio_total_Bs);
+        // console.log(precio_total_Bs);
         setPrecioTotalUSD(precio_total_USD);
-        console.log(precio_total_USD);
+        // console.log(precio_total_USD);
 
-        // Modificar la variable de estado para contar productos (sumar)
+        productsSelectedBs.push(precio_total_Bs);
+        productsSelectedUSD.push(precio_total_USD);
+        // console.log(productsSelectedBs);
+        // console.log(productsSelectedUSD);
+
+
+        // Modificar la variable de estado para control de cambios
         let cP = cantidadProductos+1;
         setCantidadProductos(cP);
 
         // Actualizar el total de todos los productos en Bs
-        let newInicialBs = sumaInicialBs+Number(precio_total_Bs);
+        let newInicialBs = Number(productsSelectedBs.reduce((sum, elem)=> sum+Number(elem), 0));
         setSumaInicialBs(newInicialBs);
         console.log(newInicialBs);
 
         // Actualizar el total de todos los productos en BUSD
-        let newInicialUSD = sumaInicialUSD+Number(precio_total_USD);
+        let newInicialUSD = Number(productsSelectedUSD.reduce((sum, elem)=> sum+Number(elem), 0));
         setSumaInicialUSD(newInicialUSD);
         console.log(newInicialUSD);
     };
@@ -762,4 +769,4 @@ function InitialPrice({
     );
 }
 
-export { InitialPrice };
+export { InitialPrice, productsSelectedBs, productsSelectedUSD };

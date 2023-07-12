@@ -43,9 +43,7 @@ function App() {
         setPrecioTotalUSD={setPrecioTotalUSD}
         cantidadProductos={cantidadProductos}
         setCantidadProductos={setCantidadProductos}
-        sumaInicialBs={sumaInicialBs}
         setSumaInicialBs={setSumaInicialBs}
-        sumaInicialUSD={sumaInicialUSD}
         setSumaInicialUSD={setSumaInicialUSD}  />
       <SummaryChart
         itemSelected={itemSelected}
@@ -55,7 +53,6 @@ function App() {
         precioTotalBs={precioTotalBs}
         precioTotalUSD={precioTotalUSD}
         cantidadProductos={cantidadProductos}
-        setCantidadProductos={setCantidadProductos}
         sumaInicialBs={sumaInicialBs}
         setSumaInicialBs={setSumaInicialBs}
         sumaInicialUSD={sumaInicialUSD}
