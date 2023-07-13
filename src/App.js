@@ -3,6 +3,7 @@
 import React from 'react';
 import { InitialPrice } from './InitialPrice/InitialPrice';
 import { SummaryChart } from './SummaryChart/SummaryChart';
+import { AdditionalPrice } from './AditionalPrice/AditionalPrice';
 
 function App() {
   const [itemSelected, setItemSelected] = React.useState('');
@@ -18,6 +19,21 @@ function App() {
   const [cantidadProductos, setCantidadProductos] = React.useState(0);
   const [sumaInicialBs, setSumaInicialBs] = React.useState(0);
   const [sumaInicialUSD, setSumaInicialUSD] = React.useState(0);
+
+  const [cantidadAdicional1, setCantidadAdicional1] = React.useState(0);
+  const [usdAdicional1, setUsdAdicional1] = React.useState(0);
+  const [cantidadAdicional2, setCantidadAdicional2] = React.useState(0);
+  const [usdAdicional2, setUsdAdicional2] = React.useState(0);
+  const [cantidadAdicional3, setCantidadAdicional3] = React.useState(0);
+  const [usdAdicional3, setUsdAdicional3] = React.useState(0);
+  const [cantidadAdicional4, setCantidadAdicional4] = React.useState(0);
+  const [usdAdicional4, setUsdAdicional4] = React.useState(0);
+  const [cantidadAdicional5, setCantidadAdicional5] = React.useState(0);
+  const [usdAdicional5, setUsdAdicional5] = React.useState(0);
+  const [adicionalTotalBs, setAdicionalTotalBs] = React.useState(0);
+  const [adicionalTotalUSD, setAdicionalTotalUSD] = React.useState(0);
+  const [precioFinalBs, setPrecioFinalBs] = React.useState(0);
+  const [precioFinalUSD, setPrecioFinalUSD] = React.useState(0);
 
   return (
     <React.Fragment>
@@ -57,7 +73,38 @@ function App() {
         setSumaInicialBs={setSumaInicialBs}
         sumaInicialUSD={sumaInicialUSD}
         setSumaInicialUSD={setSumaInicialUSD} />
-      {/*<AdditionalPrice />*/}
+      {<AdditionalPrice
+        cantidadAdicional1={cantidadAdicional1}
+        setCantidadAdicional1={setCantidadAdicional1}
+        usdAdicional1={usdAdicional1}
+        setUsdAdicional1={setUsdAdicional1}
+        cantidadAdicional2={cantidadAdicional2}
+        setCantidadAdicional2={setCantidadAdicional2}
+        usdAdicional2={usdAdicional2}
+        setUsdAdicional2={setUsdAdicional2}
+        cantidadAdicional3={cantidadAdicional3}
+        setCantidadAdicional3={setCantidadAdicional3}
+        usdAdicional3={usdAdicional3}
+        setUsdAdicional3={setUsdAdicional3}
+        cantidadAdicional4={cantidadAdicional4}
+        setCantidadAdicional4={setCantidadAdicional4}
+        usdAdicional4={usdAdicional4}
+        setUsdAdicional4={setUsdAdicional4}
+        cantidadAdicional5={cantidadAdicional5}
+        setCantidadAdicional5={setCantidadAdicional5}
+        usdAdicional5={usdAdicional5}
+        setUsdAdicional5={setUsdAdicional5}
+        adicionalTotalBs={adicionalTotalBs}
+        setAdicionalTotalBs={setAdicionalTotalBs}
+        adicionalTotalUSD={adicionalTotalUSD}
+        setAdicionalTotalUSD={setAdicionalTotalUSD}
+        sumaInicialBs={sumaInicialBs}
+        sumaInicialUSD={sumaInicialUSD}
+        precioFinalBs={precioFinalBs}
+        setPrecioFinalBs={setPrecioFinalBs}
+        precioFinalUSD={precioFinalUSD}
+        setPrecioFinalUSD={setPrecioFinalUSD}
+        tasaCambio={tasaCambio} />}
       {/*<Budget />*/}
       {/*<ClearAll />*/}
     </React.Fragment>
