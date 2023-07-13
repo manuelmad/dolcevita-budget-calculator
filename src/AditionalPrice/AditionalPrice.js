@@ -7,22 +7,32 @@ function AdditionalPrice({
     setCantidadAdicional1,
     usdAdicional1,
     setUsdAdicional1,
+    displayAdicional1,
+    setDisplayAdicional1,
     cantidadAdicional2,
     setCantidadAdicional2,
     usdAdicional2,
     setUsdAdicional2,
+    displayAdicional2,
+    setDisplayAdicional2,
     cantidadAdicional3,
     setCantidadAdicional3,
     usdAdicional3,
     setUsdAdicional3,
+    displayAdicional3,
+    setDisplayAdicional3,
     cantidadAdicional4,
     setCantidadAdicional4,
     usdAdicional4,
     setUsdAdicional4,
+    displayAdicional4,
+    setDisplayAdicional4,
     cantidadAdicional5,
     setCantidadAdicional5,
     usdAdicional5,
     setUsdAdicional5,
+    displayAdicional5,
+    setDisplayAdicional5,
     adicionalTotalBs,
     setAdicionalTotalBs,
     adicionalTotalUSD,
@@ -43,6 +53,14 @@ function AdditionalPrice({
     const updateAditionalUSD1 = (event)=> {
         setUsdAdicional1(event.target.value);
     }
+    // Función para mostrar/ocultar el contenedor de costo adicional 1
+    const showAditional1 = ()=> {
+        if(displayAdicional1.display === "none") {
+            setDisplayAdicional1({display:"grid"});
+        } else if(displayAdicional1.display === "grid") {
+            setDisplayAdicional1({display:"none"});
+        }
+    }
 
     // Función onChange para actualizar la cantidadAdicional2
     const updateAditionalQt2 = (event)=> {
@@ -51,6 +69,14 @@ function AdditionalPrice({
     // Función onChange para actualizar la usdAdicional2
     const updateAditionalUSD2 = (event)=> {
         setUsdAdicional2(event.target.value);
+    }
+    // Función para mostrar/ocultar el contenedor de costo adicional 2
+    const showAditional2 = ()=> {
+        if(displayAdicional2.display === "none") {
+            setDisplayAdicional2({display:"grid"});
+        } else if(displayAdicional2.display === "grid") {
+            setDisplayAdicional2({display:"none"});
+        }
     }
 
     // Función onChange para actualizar la cantidadAdicional3
@@ -61,6 +87,14 @@ function AdditionalPrice({
     const updateAditionalUSD3 = (event)=> {
         setUsdAdicional3(event.target.value);
     }
+    // Función para mostrar/ocultar el contenedor de costo adicional 3
+    const showAditional3 = ()=> {
+        if(displayAdicional3.display === "none") {
+            setDisplayAdicional3({display:"grid"});
+        } else if(displayAdicional3.display === "grid") {
+            setDisplayAdicional3({display:"none"});
+        }
+    }
 
     // Función onChange para actualizar la cantidadAdicional4
     const updateAditionalQt4 = (event)=> {
@@ -70,6 +104,14 @@ function AdditionalPrice({
     const updateAditionalUSD4 = (event)=> {
         setUsdAdicional4(event.target.value);
     }
+    // Función para mostrar/ocultar el contenedor de costo adicional 4
+    const showAditional4 = ()=> {
+        if(displayAdicional4.display === "none") {
+            setDisplayAdicional4({display:"grid"});
+        } else if(displayAdicional4.display === "grid") {
+            setDisplayAdicional4({display:"none"});
+        }
+    }
 
     // Función onChange para actualizar la cantidadAdicional4
     const updateAditionalQt5 = (event)=> {
@@ -78,6 +120,14 @@ function AdditionalPrice({
     // Función onChange para actualizar la usdAdicional4
     const updateAditionalUSD5 = (event)=> {
         setUsdAdicional5(event.target.value);
+    }
+    // Función para mostrar/ocultar el contenedor de costo adicional 5
+    const showAditional5 = ()=> {
+        if(displayAdicional5.display === "none") {
+            setDisplayAdicional5({display:"grid"});
+        } else if(displayAdicional5.display === "grid") {
+            setDisplayAdicional5({display:"none"});
+        }
     }
 
     // Función para calcular el total adicional
@@ -110,14 +160,14 @@ function AdditionalPrice({
 			<h2>
 				Producto Adicional
 				<span>
-					<button id="boton_desplegar_1" className="boton-desplegar">
+					<button id="boton_desplegar_1" className="boton-desplegar" onClick={showAditional1}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
 							<path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 						  </svg>
 					</button>
 				</span>
 			</h2>
-			<div className="producto-adicional-container" id="producto_adicional_container_1">
+			<div style={displayAdicional1} className="producto-adicional-container" id="producto_adicional_container_1">
 				<p>
 					<span>Descripción:</span>
 					<textarea name="textarea" className="area-texto" cols="33" rows="2" wrap="hard" id="descripcion_1"></textarea>
@@ -134,14 +184,14 @@ function AdditionalPrice({
 			<h2>
 				Producto Adicional
 				<span>
-					<button id="boton_desplegar_2" className="boton-desplegar">
+					<button id="boton_desplegar_2" className="boton-desplegar" onClick={showAditional2}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
 							<path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 						  </svg>
 					</button>
 				</span>
 			</h2>
-			<div className="producto-adicional-container"id="producto_adicional_container_2">
+			<div style={displayAdicional2}className="producto-adicional-container"id="producto_adicional_container_2">
 				<p>
 					<span>Descripción:</span>
 					<textarea name="textarea" className="area-texto" cols="33" rows="2" wrap="hard" id="descripcion_2"></textarea>
@@ -158,14 +208,14 @@ function AdditionalPrice({
 			<h2>
 				Producto Adicional
 				<span>
-					<button id="boton_desplegar_3" className="boton-desplegar">
+					<button id="boton_desplegar_3" className="boton-desplegar" onClick={showAditional3}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
 							<path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 						  </svg>
 					</button>
 				</span>
 			</h2>
-			<div className="producto-adicional-container" id="producto_adicional_container_3">
+			<div className="producto-adicional-container" style={displayAdicional3} id="producto_adicional_container_3">
 				<p>
 					<span>Descripción:</span>
 					<textarea name="textarea" className="area-texto" rows="2" id="descripcion_3"></textarea>
@@ -182,14 +232,14 @@ function AdditionalPrice({
 			<h2>
 				Producto Adicional
 				<span>
-					<button id="boton_desplegar_4" className="boton-desplegar">
+					<button id="boton_desplegar_4" className="boton-desplegar" onClick={showAditional4}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
 							<path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 						  </svg>
 					</button>
 				</span>
 			</h2>
-			<div className="producto-adicional-container" id="producto_adicional_container_4">
+			<div className="producto-adicional-container" style={displayAdicional4} id="producto_adicional_container_4">
 				<p>
 					<span>Descripción:</span>
 					<textarea name="textarea" className="area-texto" rows="2" id="descripcion_4"></textarea>
@@ -206,14 +256,14 @@ function AdditionalPrice({
 			<h2>
 				Producto Adicional
 				<span>
-					<button id="boton_desplegar_5" className="boton-desplegar">
+					<button id="boton_desplegar_5" className="boton-desplegar" onClick={showAditional5}>
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16">
 							<path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 						  </svg>
 					</button>
 				</span>
 			</h2>
-			<div className="producto-adicional-container" id="producto_adicional_container_5">
+			<div className="producto-adicional-container" style={displayAdicional5} id="producto_adicional_container_5">
 				<p>
 					<span>Descripción:</span>
 					<textarea name="textarea" className="area-texto" rows="2" id="descripcion_5"></textarea>
