@@ -284,8 +284,8 @@ function AdditionalPrice({
 				</p>
 				<h2>Precio Final</h2>
 				<p>
-					<span id="costo-final-Bs">{precioFinalBs}</span> Bs.<br/>
-					<span id="costo-final-USD">{precioFinalUSD}</span> USD.
+					<span id="costo-final-Bs">{precioFinalBs.toFixed(2)}</span> Bs.<br/>
+					<span id="costo-final-USD">{precioFinalUSD.toFixed(2)}</span> USD.
 				</p>
 			</div>
 		</section>

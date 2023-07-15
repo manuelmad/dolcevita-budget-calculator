@@ -56,9 +56,9 @@ function SummaryChart({
 	},[cantidadProductos]);
 
 	const removeRow = () => {
+		// CÓDIGO PARA ELIMINAR LAS FILAS DE LA TABLA RESUMEN
 		let filas_tbody = document.getElementById("cuerpo_tabla_resumen");
 		let a = filas_tbody.getElementsByTagName("tr").length;
-		// console.log(a);
 
 		// Condicional para que no elimine filas cuando solo quede la del total
 		if(a <= 1) {
@@ -83,6 +83,11 @@ function SummaryChart({
 		let penultima_fila = filas_tbody.children[a-2];
 		console.log(penultima_fila);
 		filas_tbody.removeChild(penultima_fila);
+
+		// CÓDIGO PARA ELIMINAR LAS FILAS DE LA TABLA DE PRESUPUESTO
+		let filas_tbody_prespuesto = document.getElementById("cuerpo_tabla_prespuesto");
+		let ultima_fila_presupuesto = filas_tbody_prespuesto.lastElementChild;
+		filas_tbody_prespuesto.removeChild(ultima_fila_presupuesto);
 	};
 
     return(

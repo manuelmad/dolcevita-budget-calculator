@@ -1,9 +1,10 @@
 //import logo from './logo.svg';
-// import './App.css';
 import React from 'react';
 import { InitialPrice } from './InitialPrice/InitialPrice';
 import { SummaryChart } from './SummaryChart/SummaryChart';
 import { AdditionalPrice } from './AditionalPrice/AditionalPrice';
+import { Budget } from './Budget/Budget';
+import { ClearAll } from './ClearAll/ClearAll';
 
 function App() {
   const [itemSelected, setItemSelected] = React.useState('');
@@ -39,6 +40,8 @@ function App() {
   const [adicionalTotalUSD, setAdicionalTotalUSD] = React.useState(0);
   const [precioFinalBs, setPrecioFinalBs] = React.useState(0);
   const [precioFinalUSD, setPrecioFinalUSD] = React.useState(0);
+
+  const [displayComment, setDisplayComment] = React.useState({display:"none"});
 
   return (
     <React.Fragment>
@@ -120,8 +123,13 @@ function App() {
         precioFinalUSD={precioFinalUSD}
         setPrecioFinalUSD={setPrecioFinalUSD}
         tasaCambio={tasaCambio} />}
-      {/*<Budget />*/}
-      {/*<ClearAll />*/}
+      {<Budget
+        cantidadProductos={cantidadProductos}
+        itemSelected={itemSelected}
+        cantidad={cantidad}
+        displayComment={displayComment}
+        setDisplayComment={setDisplayComment} />}
+      {<ClearAll />}
     </React.Fragment>
   );
 }
