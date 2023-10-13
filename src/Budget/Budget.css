@@ -2,16 +2,6 @@
 	width: 29rem;
 }
 
-.logo-presupuesto {
-	width: 8.1rem;
-	height: 6.9rem;
-	background-image: url('../../imgs/logo-empresa-transp.png');
-    /* background-size: cover; */
-    background-position: center;
-    background-repeat: no-repeat;
-	margin-top: 1rem;
-}
-
 .presupuesto {
 	background-color: var(--kind-pink);
 	margin-top: 3rem;
@@ -20,6 +10,16 @@
 	background-size: cover;
 	background-position: center;
     background-repeat: no-repeat; */
+	margin-top: 1rem;
+}
+
+.logo-presupuesto {
+	width: 8.1rem;
+	height: 6.9rem;
+	background-image: url('./logo-empresa-transp.png');
+    /* background-size: cover; */
+    background-position: center;
+    background-repeat: no-repeat;
 	margin-top: 1rem;
 }
 

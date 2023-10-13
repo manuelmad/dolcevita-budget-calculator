@@ -49,7 +49,7 @@ function Budget({
 
     return (
         <section className="presupuesto">
-			<div className="logo-presupuesto"></div>
+			<div class="logo-presupuesto"></div>
 			<h2>Presupuesto</h2>
 			<div className="container-presupuesto">
 				<table className="tabla-prespuesto" id="tabla_presupuesto">

@@ -279,8 +279,8 @@ function AdditionalPrice({
 			</div>
 			<div className="calculos-finales">
 				<p>Costo Adicional:<br/>
-					<span id="costo-adicional-Bs">{adicionalTotalBs.toFixed(2)}</span>Bs. adicionales<br/>
-					<span id="costo-adicional-USD">{adicionalTotalUSD.toFixed(2)}</span>USD adicionales.
+					<span id="costo-adicional-Bs">{adicionalTotalBs.toFixed(2)}</span> Bs. adicionales<br/>
+					<span id="costo-adicional-USD">{adicionalTotalUSD.toFixed(2)}</span> USD adicionales.
 				</p>
 				<h2>Precio Final</h2>
 				<p>
